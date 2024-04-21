@@ -1,0 +1,22 @@
+﻿@using System;
+@using System.IO;
+
+@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<MudCarousel Class="mud-width-full" @ref="_carousel" ItemsSource="@_source" @bind-SelectedIndex="selectedIndex" Style="@($"background:{_colors[selectedIndex]}; height: 250px")" ShowBullets="false">
+    <ItemTemplate>
+        <div class="d-flex flex-column flex-column justify-center" style="height:100%">
+            <MudIcon Class="mx-auto" Icon="@Icons.Custom.Brands.MudBlazor" Size="@Size.Large" />
+            <MudText Align="@Align.Center" Class="mx-auto">@context</MudText>
+        </div>
+    </ItemTemplate>
+</MudCarousel>
+
+@code {
+    private MudCarousel<string> _carousel;
+    private IList<string> _source = new List<string>() { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+    private IList<string> _colors = new List<string>() { Colors.Orange.Accent2, Colors.Yellow.Accent2, Colors.Blue.Accent1, Colors.Cyan.Accent3, Colors.Green.Default };
+    private int selectedIndex = 2;
+}
